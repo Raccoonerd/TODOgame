@@ -1,0 +1,17 @@
+# build dir
+build/
+cmake-build-*/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# compiled files
+*.o
+*.so
+*.a
+
+# OS
+.DS_Store
