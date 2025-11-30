@@ -12,9 +12,12 @@
   }
 
   for(const auto& [tId, task] : tasks){
-    file<<tId<<";"<<task.m_title<<";"<<task.m_description<<'\n';
+    file<<tId<<";"
+      <<task.m_title<<";"
+      <<task.m_description<<";"
+      <<(task.m_isDone ? 1 : 0)<<'\n';
   }
-  }
+}
 
 auto FileManager::loadTasks(int& nextIdToUpdate)  -> std::map<int, Task> {
   std::map<int, Task> tasks;
@@ -37,16 +40,19 @@ auto FileManager::loadTasks(int& nextIdToUpdate)  -> std::map<int, Task> {
 
     size_t firstSemi = line.find(';');
     size_t secondSemi = line.find(';', firstSemi + 1);
+    size_t thirdSemi = line.find(';', secondSemi + 1);
 
-    if(firstSemi != std::string::npos && secondSemi != std::string::npos){
+    if(firstSemi  != std::string::npos && 
+      secondSemi  != std::string::npos &&
+      thirdSemi   != std::string::npos){
+
       try {
-        std::string idStr = line.substr(0, firstSemi);
-        std::string title = line.substr(firstSemi + 1, secondSemi - (firstSemi + 1));
-        std::string desc = line.substr(secondSemi + 1);
+        int tId= std::stoi(line.substr(0, firstSemi));
+        std::string title = line.substr(firstSemi + 1, secondSemi - (firstSemi - 1));
+        std::string desc = line.substr(secondSemi + 1, thirdSemi - (secondSemi -1));
+        bool isDone = (std::stoi(line.substr(thirdSemi + 1)) != 0);
 
-        int tId = std::stoi(idStr);
-
-        tasks.emplace(tId, Task(std::move(title), std::move(desc)));
+        tasks.emplace(tId, Task(std::move(title), std::move(desc), isDone));
 
         maxId = std::max(tId, maxId);
       } catch (...) {

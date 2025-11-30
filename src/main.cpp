@@ -12,6 +12,8 @@ auto main () -> int {
 
   manager.removeTask(0);
 
+  manager.markAsDone(1);
+
   manager.printTasks();
 
   return 0;

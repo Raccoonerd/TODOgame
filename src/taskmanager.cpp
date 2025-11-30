@@ -15,7 +15,8 @@ auto TaskManager::addTask(std::string title, std::string description) -> bool{
 
 void TaskManager::printTasks() const{
   for (const auto& [tId, task] : m_tasks){
-    std::cout<<"("<<tId + 1<<")"<< task.m_title << ":\n" << task.m_description << '\n';
+    std::string done = task.m_isDone ? "DONE" : "TODO";
+    std::cout<<"("<<tId + 1<<") "<< task.m_title << "\t[" << done << "]" << ":\n" << task.m_description << '\n';
   }
 }
 
@@ -29,5 +30,16 @@ auto TaskManager::removeTask(int tId) -> bool{
   }  
 
   std::cout << "Could not delete task! ID: [" << tId << "]\n";
+  return false;
+}
+
+auto TaskManager::markAsDone(int tId) -> bool{
+  auto task = m_tasks.find(tId);
+
+  if(task != m_tasks.end()){
+    task->second.m_isDone = !task->second.m_isDone;
+    return true;
+  }
+  
   return false;
 }

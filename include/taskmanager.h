@@ -29,5 +29,6 @@ public:
   auto addTask(std::string title, std::string description) -> bool;
   void printTasks() const;
   auto removeTask(int tId) -> bool;
+  auto markAsDone(int tId) -> bool;
 };
 
