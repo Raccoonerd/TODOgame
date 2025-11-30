@@ -18,3 +18,16 @@ void TaskManager::printTasks() const{
     std::cout<<"("<<tId + 1<<")"<< task.m_title << ":\n" << task.m_description << '\n';
   }
 }
+
+auto TaskManager::removeTask(int tId) -> bool{
+  size_t removedCount = m_tasks.erase(tId);
+
+  if(removedCount > 0){
+    std::cout << "Successfully deleted task! ID: [" << tId << "]\n";
+    FileManager::saveTask(m_tasks);
+    return true;
+  }  
+
+  std::cout << "Could not delete task! ID: [" << tId << "]\n";
+  return false;
+}

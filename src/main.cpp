@@ -4,7 +4,13 @@ auto main () -> int {
   
   TaskManager& manager = TaskManager::getInstance();
   
-  manager.addTask("Zakupy", "Kupic mleko i chleb");
+  manager.addTask("Task", "Description");
+
+  manager.addTask("Hello", "World");
+
+  manager.printTasks();
+
+  manager.removeTask(0);
 
   manager.printTasks();
 
