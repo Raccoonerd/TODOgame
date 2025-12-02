@@ -14,6 +14,7 @@ set(SOURCES
   src/main.cpp
   src/taskmanager.cpp
   src/filemanager.cpp
+  src/argsparser.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})

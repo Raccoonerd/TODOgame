@@ -1,20 +1,12 @@
-#include "../include/taskmanager.h"
+#include "../include/argsparser.h"
 
-auto main () -> int {
+auto main (int argc, char* argv[]) -> int {
   
-  TaskManager& manager = TaskManager::getInstance();
-  
-  manager.addTask("Task", "Description");
+  TaskManager& tmgr = TaskManager::getInstance();
 
-  manager.addTask("Hello", "World");
+  ArgsParser argpar(argc, argv);
 
-  manager.printTasks();
-
-  manager.removeTask(0);
-
-  manager.markAsDone(1);
-
-  manager.printTasks();
+  argpar.parse_and_execute(tmgr);
 
   return 0;
 }
