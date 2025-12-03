@@ -48,8 +48,8 @@ auto FileManager::loadTasks(int& nextIdToUpdate)  -> std::map<int, Task> {
 
       try {
         int tId= std::stoi(line.substr(0, firstSemi));
-        std::string title = line.substr(firstSemi + 1, secondSemi - (firstSemi - 1));
-        std::string desc = line.substr(secondSemi + 1, thirdSemi - (secondSemi -1));
+        std::string title = line.substr(firstSemi + 1, secondSemi - (firstSemi + 1));
+        std::string desc = line.substr(secondSemi + 1, thirdSemi - (secondSemi + 1));
         bool isDone = (std::stoi(line.substr(thirdSemi + 1)) != 0);
 
         tasks.emplace(tId, Task(std::move(title), std::move(desc), isDone));

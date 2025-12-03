@@ -24,12 +24,12 @@ auto TaskManager::removeTask(int tId) -> bool{
   size_t removedCount = m_tasks.erase(tId);
 
   if(removedCount > 0){
-    std::cout << "Successfully deleted task! ID: [" << tId << "]\n";
+    std::cout << "Successfully deleted task! ID: [" << tId + 1<< "]\n";
     FileManager::saveTask(m_tasks);
     return true;
   }  
 
-  std::cout << "Could not delete task! ID: [" << tId << "]\n";
+  std::cout << "Could not delete task! ID: [" << tId + 1 << "]\n";
   return false;
 }
 

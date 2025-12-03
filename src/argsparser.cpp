@@ -9,6 +9,11 @@ ArgsParser::ArgsParser(int argc, char* argv[]){
 }
 
 void ArgsParser::parse_and_execute(TaskManager& tmgr){
+  
+  if(args.size() < 2){
+    return;
+  }
+
   const std::string command = args[1];
 
   if (command == "-a" || command == "--add") {
